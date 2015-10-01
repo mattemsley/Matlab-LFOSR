@@ -1,0 +1,12 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%            Film Structure File              %%
+%% Please refer to http://mosfet.bu.edu/LFOSR/ %%
+%% for a list of available materials           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                Top to Bottom                %%
+%%             Layer||Thickness (nm)           %%
+%%          ALL POINTS IN NANOMETERS !!!       %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+si_palik 180000
+al 10
+
