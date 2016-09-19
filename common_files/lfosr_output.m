@@ -705,14 +705,14 @@ if Slider_Bar
     %     27                         28
     %     29                        30
     %     31      32            33         34    35
-    SliderCallbackData=[Slider_1_min_h,Slider_1_max_h,Slider_1_value_h,Slider_1_h,...
+    SliderCallbackData={Slider_1_min_h,Slider_1_max_h,Slider_1_value_h,Slider_1_h,...
             Layer_numbers_1_h,Slider_2_min_h,Slider_2_max_h,Slider_2_value_h,Slider_2_h,...
             Layer_numbers_2_h,Slider_3_min_h,Slider_3_max_h,Slider_3_value_h,Slider_3_h,...
             Sticky_1_h,Display_1_h,Sticky_2_h,Display_2_h,lambda_data_h,theta_data_h,thickness_data_h,...
             n_change_h,k_change_h,refractive_index_data_h,Sweep_Variable,FVersion...
             Layer_numbers_1_previous_h,Layer_numbers_2_previous_h,...
             thickness_data_original_h,refractive_index_original_h,...
-            Reset_h,Reset_index_h,CallBack_h,Layer,Length,User_selection_h];
+            Reset_h,Reset_index_h,CallBack_h,Layer,Length,User_selection_h};
     
     SliderCallbackString='lfosr_adjust(gcbo,gca,get(gcbo,''UserData''));';
     
@@ -785,18 +785,18 @@ case 'film' %Film Called
         Wavelength=NaN;
         Layer=1;
         %         1        2              3     4          5     6
-        Data_R_h=[FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
-                handle_fca,Variable_h,R_TM_h,R_TE_h];
+        Data_R_h={FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
+                handle_fca,Variable_h,R_TM_h,R_TE_h};
         %     7          8          9      10
         
         %         1        2              3     4          5     6
-        Data_T_h=[FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
-                handle_fca,Variable_h,T_TM_h,T_TE_h];
+        Data_T_h={FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
+                handle_fca,Variable_h,T_TM_h,T_TE_h};
         %     7          8          9      10
         
         %         1        2              3     4          5     6
-        Data_P_h=[FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
-                handle_fca,Variable_h,P_TM_h,P_TE_h];
+        Data_P_h={FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
+                handle_fca,Variable_h,P_TM_h,P_TE_h};
         %     7          8          9      10
         
         handle_R = uimenu(handle_fcf,'Label','Reflectance');
@@ -827,18 +827,18 @@ case 'film' %Film Called
         Wavelength=lambda_data;
         
         %         1        2              3     4          5     6
-        Data_R_h=[FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
-                handle_fca,Variable_h,R_TM_h,R_TE_h];
+        Data_R_h={FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
+                handle_fca,Variable_h,R_TM_h,R_TE_h};
         %     7          8          9      10
         
         %         1        2              3     4          5     6
-        Data_T_h=[FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
-                handle_fca,Variable_h,T_TM_h,T_TE_h];
+        Data_T_h={FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
+                handle_fca,Variable_h,T_TM_h,T_TE_h};
         %     7          8          9      10
         
         %         1        2              3     4          5     6
-        Data_P_h=[FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
-                handle_fca,Variable_h,P_TM_h,P_TE_h];
+        Data_P_h={FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
+                handle_fca,Variable_h,P_TM_h,P_TE_h};
         %     7          8          9      10
         
         uimenu(handle_fcf,'Label','Reflectance','UserData',Data_R_h,...
@@ -857,18 +857,18 @@ case 'film' %Film Called
         Wavelength=lambda_data;
         
         %         1        2              3     4          5     6
-        Data_R_h=[FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
-                handle_fca,Variable_h,R_TM_h,R_TE_h];
+        Data_R_h={FVersion,Sweep_Variable,Angle,Wavelength,Length,Percentage_Length,thickness_data(1,Length),...
+                handle_fca,Variable_h,R_TM_h,R_TE_h};
         %     7          8          9      10
         
         %         1        2              3     4          5     6
-        Data_T_h=[FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
-                handle_fca,Variable_h,T_TM_h,T_TE_h];
+        Data_T_h={FVersion,Sweep_Variable,Angle,Wavelength,Length,Percentage_Length,thickness_data(1,Length),...
+                handle_fca,Variable_h,T_TM_h,T_TE_h};
         %     7          8          9      10
         
         %         1        2              3     4          5     6
-        Data_P_h=[FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
-                handle_fca,Variable_h,P_TM_h,P_TE_h];
+        Data_P_h={FVersion,Sweep_Variable,Angle,Wavelength,Length,Percentage_Length,thickness_data(1,Length),...
+                handle_fca,Variable_h,P_TM_h,P_TE_h};
         %     7          8          9      10
         
         uimenu(handle_fcf,'Label','Reflectance','UserData',Data_R_h,...
@@ -931,8 +931,8 @@ case 'detector' %Detector Called
         RV(3,:)=QE(3,:).*(q/h/c).*QE(1,:);
         
         %          1        2              3     4          5     6
-        Data_QE_h=[FVersion,Sweep_Variable,Angle,Wavelength,Length,Percentage_Length,thickness_data(1,Layer),...
-                handle_fca,Variable_h,QE_TM_h,QE_TE_h];
+        Data_QE_h={FVersion,Sweep_Variable,Angle,Wavelength,Length,Percentage_Length,thickness_data(1,Layer),...
+                handle_fca,Variable_h,QE_TM_h,QE_TE_h};
         %     7          8          9      10
         
         handle_QE=uimenu(handle_fcf,'Label','Quantum Efficiency');
@@ -960,8 +960,8 @@ case 'detector' %Detector Called
         RV(3,:)=QE(3,:).*(q/h/c).*Wavelength;
         
         %          1        2              3     4          5     6
-        Data_QE_h=[FVersion,Sweep_Variable,Angle,Wavelength,Length,Percentage_Length,thickness_data(1,Layer),...
-                handle_fca,Variable_h,QE_TM_h,QE_TE_h];
+        Data_QE_h={FVersion,Sweep_Variable,Angle,Wavelength,Length,Percentage_Length,thickness_data(1,Layer),...
+                handle_fca,Variable_h,QE_TM_h,QE_TE_h};
         %     7          8          9       10
         
         uimenu(handle_fcf,'Label','Quantum Efficiency','UserData',Data_QE_h,...
@@ -981,8 +981,8 @@ case 'detector' %Detector Called
         RV(3,:)=QE(3,:).*(q/h/c).*Wavelength;
         
         %          1        2              3     4          5     6
-        Data_QE_h=[FVersion,Sweep_Variable,Angle,Wavelength,Length,Percentage_Length,thickness_data(1,Length),...
-                handle_fca,Variable_h,QE_TM_h,QE_TE_h,];
+        Data_QE_h={FVersion,Sweep_Variable,Angle,Wavelength,Length,Percentage_Length,thickness_data(1,Length),...
+                handle_fca,Variable_h,QE_TM_h,QE_TE_h,};
         %     7          8          9       10
 
         uimenu(handle_fcf,'Label','Quantum Efficiency','UserData',Data_QE_h,...

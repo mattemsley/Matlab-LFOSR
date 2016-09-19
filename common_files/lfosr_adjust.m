@@ -56,42 +56,42 @@ end
 Line_suppress=1;
 Timedebug=0;
 
-Slider_1_min_h=Handles(1);
-Slider_1_max_h=Handles(2);
-Slider_1_value_h=Handles(3);
-Slider_1_h=Handles(4);
-Layer_numbers_1_h=Handles(5);
-Slider_2_min_h=Handles(6);
-Slider_2_max_h=Handles(7);
-Slider_2_value_h=Handles(8);
-Slider_2_h=Handles(9);
-Layer_numbers_2_h=Handles(10);
-Slider_3_min_h=Handles(11);
-Slider_3_max_h=Handles(12);
-Slider_3_value_h=Handles(13);
-Slider_3_h=Handles(14);
-Sticky_1_h=Handles(15);
-Display_1_h=Handles(16);
-Sticky_2_h=Handles(17);
-Display_2_h=Handles(18);
-lambda_h=Handles(19);
-theta_h=Handles(20);
-thickness_h=Handles(21);
-n_change_h=Handles(22);
-k_change_h=Handles(23);
-refractive_index_h=Handles(24);
-Sweep_Variable=Handles(25);
-FVersion=Handles(26);
-Layer_numbers_1_previous_h=Handles(27);
-Layer_numbers_2_previous_h=Handles(28);
-thickness_data_original_h=Handles(29);
-refractive_index_original_h=Handles(30);
-Reset_h=Handles(31);
-Reset_index_h=Handles(32);
-CallBack_h=Handles(33);
-Layer=Handles(34);
-Length=Handles(35);
-User_selection=get(Handles(36),'Userdata');
+Slider_1_min_h=Handles{1};
+Slider_1_max_h=Handles{2};
+Slider_1_value_h=Handles{3};
+Slider_1_h=Handles{4};
+Layer_numbers_1_h=Handles{5};
+Slider_2_min_h=Handles{6};
+Slider_2_max_h=Handles{7};
+Slider_2_value_h=Handles{8};
+Slider_2_h=Handles{9};
+Layer_numbers_2_h=Handles{10};
+Slider_3_min_h=Handles{11};
+Slider_3_max_h=Handles{12};
+Slider_3_value_h=Handles{13};
+Slider_3_h=Handles{14};
+Sticky_1_h=Handles{15};
+Display_1_h=Handles{16};
+Sticky_2_h=Handles{17};
+Display_2_h=Handles{18};
+lambda_h=Handles{19};
+theta_h=Handles{20};
+thickness_h=Handles{21};
+n_change_h=Handles{22};
+k_change_h=Handles{23};
+refractive_index_h=Handles{24};
+Sweep_Variable=Handles{25};
+FVersion=Handles{26};
+Layer_numbers_1_previous_h=Handles{27};
+Layer_numbers_2_previous_h=Handles{28};
+thickness_data_original_h=Handles{29};
+refractive_index_original_h=Handles{30};
+Reset_h=Handles{31};
+Reset_index_h=Handles{32};
+CallBack_h=Handles{33};
+Layer=Handles{34};
+Length=Handles{35};
+User_selection=get(Handles{36},'Userdata');
 
 switch Sweep_Variable
     case 100
@@ -111,11 +111,11 @@ switch Sweep_Variable
         
 end
 
-call_value=(([Slider_1_h,Slider_1_value_h,Slider_1_max_h,Slider_1_min_h,Layer_numbers_1_h,...
-    Slider_2_h,Slider_2_value_h,Slider_2_max_h,Slider_2_min_h,Layer_numbers_2_h,...
-    Slider_3_h,Slider_3_value_h,Slider_3_max_h,Slider_3_min_h,Reset_h,Reset_index_h]-Call_h)==0);
+%call_value=(([Slider_1_h,Slider_1_value_h,Slider_1_max_h,Slider_1_min_h,Layer_numbers_1_h,...
+%    Slider_2_h,Slider_2_value_h,Slider_2_max_h,Slider_2_min_h,Layer_numbers_2_h,...
+%    Slider_3_h,Slider_3_value_h,Slider_3_max_h,Slider_3_min_h,Reset_h,Reset_index_h]-Call_h)==0);
 
-call_value=1*10^(find(call_value==1)-1);
+%call_value=1*10^(find(call_value==1)-1);
 
 Min_1=str2double(get(Slider_1_min_h,'String'));
 Max_1=str2double(get(Slider_1_max_h,'String'));
@@ -126,8 +126,8 @@ Max_2=str2double(get(Slider_2_max_h,'String'));
 Min_3=str2double(get(Slider_3_min_h,'String'));
 Max_3=str2double(get(Slider_3_max_h,'String'));
 
-switch call_value
-    case 1e0  %Slider call back
+switch Call_h
+    case Slider_1_h  %Slider call back
         Slider_1=get(Slider_1_h,'Value');
         set(Slider_1_value_h,'String',Slider_1)
         
@@ -136,7 +136,7 @@ switch call_value
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         Slider_3=get(Slider_3_h,'Value');
         
-    case 1e1  %Slider Edit call back
+    case Slider_1_value_h  %Slider Edit call back
         Slider_1=str2double(get(Slider_1_value_h,'String'));
         if Slider_1>Max_1
             set(Slider_1_h,'Value',Max_1)
@@ -155,7 +155,7 @@ switch call_value
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         Slider_3=get(Slider_3_h,'Value');
         
-    case 1e2  %Slider Max call back
+    case Slider_1_max_h  %Slider Max call back
         if Max_1<=0
             set(Slider_1_min_h,'String',0)
             set(Slider_1_max_h,'String',1)
@@ -191,7 +191,7 @@ switch call_value
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         Slider_3=get(Slider_3_h,'Value');
         
-    case 1e3  %Slider Min call back
+    case Slider_1_min_h  %Slider Min call back
         if Max_1<=Min_1
             set(Slider_1_max_h,'String',Min_1+Max_1)
         elseif Min_1<0
@@ -221,7 +221,7 @@ switch call_value
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         Slider_3=get(Slider_3_h,'Value');
         
-    case 1e4  %Layer number call back
+    case Layer_numbers_1_h  %Layer number call back
         Slider_1=get(Slider_1_h,'Value');
         
         Layer_numbers_1_previous=get(Layer_numbers_1_previous_h,'UserData');
@@ -247,7 +247,7 @@ switch call_value
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         Slider_3=get(Slider_3_h,'Value');
         
-    case 1e5 %Slider 2 call back
+    case Slider_2_h %Slider 2 call back
         Slider_2=get(Slider_2_h,'Value');
         set(Slider_2_value_h,'String',Slider_2)
         
@@ -256,7 +256,7 @@ switch call_value
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         Slider_3=get(Slider_3_h,'Value');
         
-    case 1e6 %Slider 2 Edit call back
+    case Slider_2_value_h %Slider 2 Edit call back
         Slider_2=str2double(get(Slider_2_value_h,'String'));
         if Slider_2>Max_2
             set(Slider_2_h,'Value',Max_2)
@@ -275,7 +275,7 @@ switch call_value
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         Slider_3=get(Slider_3_h,'Value');
         
-    case 1e7 %Slider 2 Max call back
+    case Slider_2_max_h %Slider 2 Max call back
         if Max_2<=0
             set(Slider_2_min_h,'String',0)
             set(Slider_2_max_h,'String',1)
@@ -311,7 +311,7 @@ switch call_value
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         Slider_3=get(Slider_3_h,'Value');
         
-    case 1e8 %Slider 2 Min call back
+    case Slider_2_min_h %Slider 2 Min call back
         if Max_2<=Min_2
             set(Slider_2_max_h,'String',Min_2+Max_2)
         elseif Min_2<0
@@ -341,7 +341,7 @@ switch call_value
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         Slider_3=get(Slider_3_h,'Value');
         
-    case 1e9 %Slider 2 Layers call back
+    case Layer_numbers_2_h %Slider 2 Layers call back
         Slider_2=get(Slider_2_h,'Value');
         
         Layer_numbers_2_previous=get(Layer_numbers_2_previous_h,'UserData');
@@ -368,7 +368,7 @@ switch call_value
         Slider_3=get(Slider_3_h,'Value');
         
         
-    case 1e10  %Slider 3 call back
+    case Slider_3_h  %Slider 3 call back
         Slider_3=get(Slider_3_h,'Value');
         set(Slider_3_value_h,'String',Slider_3)
         
@@ -377,7 +377,7 @@ switch call_value
         Slider_2=get(Slider_2_h,'Value');
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         
-    case 1e11  %Slider 3 Edit call back
+    case Slider_3_value_h  %Slider 3 Edit call back
         Slider_3=str2double(get(Slider_3_value_h,'String'));
         if Slider_3>Max_3
             set(Slider_3_h,'Value',Max_3)
@@ -396,7 +396,7 @@ switch call_value
         Slider_2=get(Slider_2_h,'Value');
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         
-    case 1e12  %Slider 3 Max call back
+    case Slider_3_max_h  %Slider 3 Max call back
         if Max_3<Minval_3
             set(Slider_3_min_h,'String',Minval_3)
             set(Slider_3_max_h,'String',Maxval_3)
@@ -430,7 +430,7 @@ switch call_value
         Slider_2=get(Slider_2_h,'Value');
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         
-    case 1e13  %Slider 3 Min call back
+    case Slider_3_min_h  %Slider 3 Min call back
         if Min_3>Maxval_3
             set(Slider_3_min_h,'String',Minval_3)
             set(Slider_3_max_h,'String',Maxval_3)
@@ -464,7 +464,7 @@ switch call_value
         Slider_2=get(Slider_2_h,'Value');
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         
-    case 1e14 %Reset Thickness
+    case Reset_h %Reset Thickness
         set(thickness_h,'Userdata',get(thickness_data_original_h,'UserData'))
         
         Slider_1=get(Slider_1_h,'Value');
@@ -473,7 +473,7 @@ switch call_value
         set(Layer_numbers_2_previous_h,'UserData',str2double(get(Layer_numbers_2_h,'String')))
         Slider_3=get(Slider_3_h,'Value');
         
-    case 1e15 %Reset Index
+    case Reset_index_h %Reset Index
         set(refractive_index_h,'Userdata',get(refractive_index_original_h,'UserData'))
         
         Slider_1=get(Slider_1_h,'Value');
@@ -620,7 +620,7 @@ switch lower(Who_Called)
                     Non_Metal_Coverage.*((Tf/T)*(RR_a(2,:)/2+RR_a(3,:)/2)+...
                     (1-Tf/T)*(RR_b(2,:).*RR_c(2,:)./2.+RR_b(3,:).*RR_c(3,:)./2));
                 RR(3,:)=RR(2,:);
-
+                
                 TT(1,:)=TT_a(1,:);
                 TT(2,:)=Metal_Coverage.*(0)+...
                     Non_Metal_Coverage.*((Tf/T)*(TT_a(2,:)/2+TT_a(3,:)/2)+(1-Tf/T)*(TT_b(2,:)/2+TT_b(3,:)/2+...
@@ -836,6 +836,67 @@ switch lower(Who_Called)
                 'V_oc = ',num2str(V_oc,4),' V ',...
                 'J_sc = ',num2str(totalpowerperunitarea/10,4),' mA/cm^2 ',...
                 'Efficiency = ',num2str(cellefficiency*100,4),' %'])
+        end
+        
+        if strcmpi(User_selection,'pda')
+            if Layer_numbers_1==1
+                Lambda_Shift=Slider_1;
+                disp(['Lambda Shift=',num2str(Lambda_Shift)])
+            else
+                Lambda_Shift=0;
+            end
+            
+            h    =6.62617e-34;   %Planck constant [J.s]
+            c    =2.998e8;       %Speed of Light in Vacuum [m/s]
+            q_e  =1.60218e-19;   %Elementary charge [C]
+            
+            pda_source=3;
+            switch pda_source
+                case 1
+                    load thorlabsm505.mat
+                    pdadata_z(:,1)=lambda;
+                    pdadata_z(:,2)=interp1(thorlabsm505(:,1),thorlabsm505(:,2),lambda,'nearest','extrap'); %W/nm
+                    pdadata(:,1)=lambda;
+                    pdadata(:,2)=interp1(thorlabsm505(:,1)+Lambda_Shift,thorlabsm505(:,2),lambda,'nearest','extrap'); %W/nm
+                case 2
+                    load gadoliniumoxysulfide.mat
+                    pdadata_z(:,1)=lambda;
+                    pdadata_z(:,2)=interp1(GadoliniumOxysulfide(:,1),GadoliniumOxysulfide(:,2),lambda,'nearest','extrap'); %W/nm
+                    pdadata(:,1)=lambda;
+                    pdadata(:,2)=interp1(GadoliniumOxysulfide(:,1)+Lambda_Shift,GadoliniumOxysulfide(:,2),lambda,'nearest','extrap'); %W/nm
+                case 3
+                    load CadmiumTungstate.mat
+                    pdadata_z(:,1)=lambda;
+                    pdadata_z(:,2)=interp1(CadmiumTungstate(:,1),CadmiumTungstate(:,2),lambda,'nearest','extrap'); %W/nm
+                    pdadata(:,1)=lambda;
+                    pdadata(:,2)=interp1(CadmiumTungstate(:,1)+Lambda_Shift,CadmiumTungstate(:,2),lambda,'nearest','extrap'); %W/nm
+            end
+            
+            QE_TM_z=pdadata_z(:,2)'.*QE_TM.*lambda'.*1e-9./h./c.*q_e; %A/nm - TM
+            QE_TE_z=pdadata_z(:,2)'.*QE_TE.*lambda'.*1e-9./h./c.*q_e; %A/nm - TE
+
+            integratedcurrent_TM_z=cumtrapz(lambda,QE_TM_z);
+            totalcurrent_TM_z=integratedcurrent_TM_z(end);
+            integratedcurrent_TE_z=cumtrapz(lambda,QE_TE_z);
+            totalcurrent_TE_z=integratedcurrent_TE_z(end);
+            totalcurrent_z=totalcurrent_TE_z/2+totalcurrent_TM_z/2;
+            
+            QE_TM=pdadata(:,2)'.*QE_TM.*lambda'.*1e-9./h./c.*q_e; %A/nm - TM
+            QE_TE=pdadata(:,2)'.*QE_TE.*lambda'.*1e-9./h./c.*q_e; %A/nm - TE
+            
+            integratedincidentpower=cumtrapz(pdadata(:,1),pdadata(:,2));
+            totalincidientpower=integratedincidentpower(end);
+            
+            integratedcurrent_TM=cumtrapz(lambda,QE_TM);
+            totalcurrent_TM=integratedcurrent_TM(end);
+            integratedcurrent_TE=cumtrapz(lambda,QE_TE);
+            totalcurrent_TE=integratedcurrent_TE(end);
+            totalcurrent=totalcurrent_TE/2+totalcurrent_TM/2;
+            
+            disp(['Incident Power = ',num2str(totalincidientpower,4),' W ',...
+                'Generated Current = ',num2str(totalcurrent_z,4),' A ',...
+                'Non Linearity = ',num2str((totalcurrent/totalcurrent_z-1)*100),' %'])
+            
         end
         
         switch Sweep_Variable

@@ -123,6 +123,8 @@ if strcmp(action,'initialize')
     disp('  2 - Peak Quantum Efficiency')
     disp('  3 - Solar Option')
     disp('  4 - Non-polarized Light Source')
+    disp('  5 - Photon to Bits PDA')
+    disp('  6 - Monochromator Test')
     disp(' ')
     user_option=input('Please select User Option (1 - default)-> ','s');
 
@@ -159,6 +161,12 @@ if strcmp(action,'initialize')
         user_run=1;
     elseif user_option==4
         user_selection='nonpolarized';
+        user_run=1;
+    elseif user_option==5
+        user_selection='pda';
+        user_run=1;
+    elseif user_option==6
+        user_selection='mono';
         user_run=1;
     else
         error('Incorrect User Option')
@@ -648,11 +656,11 @@ if strcmp(action,'initialize')
     %   11                       12
     %   13                       14
     %   15                       16
-    Radio_Handles=[Lambda Theta A_Length Start Stop Angle Wavelength Layer ...
+    Radio_Handles={Lambda Theta A_Length Start Stop Angle Wavelength Layer ...
         Length Percentage_Length...
         Start_lambdasweep_default Stop_lambdasweep_default ...
         Start_thetasweep_default Stop_thetasweep_default ...
-        Start_layersweep_default Stop_layersweep_default];
+        Start_layersweep_default Stop_layersweep_default};
 
     switch sweep_choice
         case 100 %lambda sweep
@@ -997,7 +1005,68 @@ elseif strcmp(action,'run')
                 'delta_N = ',num2str(totalpowerperunitarea./q_e,4),' A/m^2 ',...
                 'Efficiency = ',num2str(cellefficiency*100,4),' %'])
         end
+
+        if strcmpi(User_selection,'mono')
+            mono_bandwidth=2;
+            [lambda_low,refractive_index_low,thickness,theta,error_lfosr_input]=lfosr_input(LFOSRVersion,...
+                Start+mono_bandwidth,Stop+mono_bandwidth,Points,Angle,Wavelength,Layer,Length,Percentage_Length,Path,Sweep_Variable,Timedebug,...
+                User_selection,n_index_warning_alert,Line_suppress);
+            
+            [QE_low,error_detector_calculation]=detector_calculation(lambda_low,theta,thickness,...
+                refractive_index_low,Layer,Length,Sweep_Variable,Timedebug,Line_suppress);
+            
+            [lambda_high,refractive_index_high,thickness,theta,error_lfosr_input]=lfosr_input(LFOSRVersion,...
+                Start-mono_bandwidth,Stop-mono_bandwidth,Points,Angle,Wavelength,Layer,Length,Percentage_Length,Path,Sweep_Variable,Timedebug,...
+                User_selection,n_index_warning_alert,Line_suppress);
+
+            [QE_high,error_detector_calculation]=detector_calculation(lambda_high,theta,thickness,...
+                refractive_index_high,Layer,Length,Sweep_Variable,Timedebug,Line_suppress);
+    
+            QE(2,:)=(QE_low(2,:)+QE(2,:)+QE_high(2,:))./3;
+            QE(3,:)=(QE_low(3,:)+QE(3,:)+QE_high(3,:))./3;            
+        end
         
+        if strcmpi(User_selection,'pda')
+            h    =6.62617e-34;   %Planck constant [J.s]
+            c    =2.998e8;       %Speed of Light in Vacuum [m/s]
+            q_e  =1.60218e-19;   %Elementary charge [C]
+            T    =298;           %Temp [K]
+            k_b  =1.38066e-23;   %Boltzmann constant [J/K]
+            n_i  =1.01e10*100^3; %Intrinsic conc in Si [m^-3]
+            N_a  =1e15*100^3;    %Source/Drain Doping [m^-3
+            
+            pda_source=3;
+            switch pda_source
+                case 1
+                    load thorlabsm505.mat
+                    pdadata(:,1)=lambda;
+                    pdadata(:,2)=interp1(thorlabsm505(:,1),thorlabsm505(:,2),lambda,'nearest','extrap'); %W/nm
+                case 2
+                    load gadoliniumoxysulfide.mat
+                    pdadata(:,1)=lambda;
+                    pdadata(:,2)=interp1(GadoliniumOxysulfide(:,1),GadoliniumOxysulfide(:,2),lambda,'nearest','extrap'); %W/nm
+                case 3
+                    load CadmiumTungstate.mat
+                    pdadata(:,1)=lambda;
+                    pdadata(:,2)=interp1(CadmiumTungstate(:,1),CadmiumTungstate(:,2),lambda,'nearest','extrap'); %W/nm
+            end
+            
+            QE(2,:)=pdadata(:,2)'.*QE(2,:).*lambda'.*1e-9./h./c.*q_e; %A/nm - TM
+            QE(3,:)=pdadata(:,2)'.*QE(3,:).*lambda'.*1e-9./h./c.*q_e; %A/nm - TE
+
+            integratedincidentpower=cumtrapz(pdadata(:,1),pdadata(:,2));
+            totalincidientpower=integratedincidentpower(end);
+
+            integratedcurrent_TM=cumtrapz(lambda,QE(2,:));
+            totalcurrent_TM=integratedcurrent_TM(end);
+            integratedcurrent_TE=cumtrapz(lambda,QE(3,:));
+            totalcurrent_TE=integratedcurrent_TE(end);
+            totalcurrent=totalcurrent_TE/2+totalcurrent_TM/2;
+ 
+            disp(['Incident Power = ',num2str(totalincidientpower,4),' W ',...
+                'Generated Current = ',num2str(totalcurrent,4),' A '])
+
+        end
         %check for error in execution of setup routine stop execution if unsuccessful
         %
         if error_detector_calculation==1

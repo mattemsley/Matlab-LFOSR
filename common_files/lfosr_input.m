@@ -211,16 +211,16 @@ case 001 % Layer thickness sweep
    % Now make LAYER vary from STOP to START along the POINTS rows
    %
    if Percentage_Length
-       thickness(:,Layer)=((x-1).*(Stop-Start)./Points+Start).*thickness(:,Layer);
+       thickness(:,Length)=((x-1).*(Stop-Start)./Points+Start).*thickness(:,Length);
    else
        if strcmpi(User_selection,'biosensor')
-           thickness(:,Layer)=(x-1).*(Stop-Start)./Points+Start;
-           thickness(:,Layer+1)=thickness(end:-1:1,Layer)-thickness(1,Layer);
+           thickness(:,Length)=(x-1).*(Stop-Start)./Points+Start;
+           thickness(:,Length+1)=thickness(end:-1:1,Length)-thickness(1,Length);
        elseif strcmpi(User_selection,'peakqeff')
-           length_quanta=Wavelength./(2.*abs(n_index(Wavelength,layer(Layer,:),n_index_warning_alert)));
-           thickness(:,Layer)=(x-1).*ceil((ceil(Stop/length_quanta)-ceil(Start/length_quanta))/Points).*length_quanta+ceil(Start/length_quanta)*length_quanta;
+           length_quanta=Wavelength./(2.*abs(n_index(Wavelength,layer(Length,:),n_index_warning_alert)));
+           thickness(:,Length)=(x-1).*ceil((ceil(Stop/length_quanta)-ceil(Start/length_quanta))/Points).*length_quanta+ceil(Start/length_quanta)*length_quanta;
        else
-           thickness(:,Layer)=(x-1).*(Stop-Start)./Points+Start;
+           thickness(:,Length)=(x-1).*(Stop-Start)./Points+Start;
        end
    end
    lambda=Wavelength; % Wavelength in nm

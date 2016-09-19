@@ -44,21 +44,22 @@ end
 %     handle_fca,Variable_h,Answer_TM_h,Answer_TE_h];
 %     7          8          9           10
 
-Version           = Handles(1);
-Sweep_Variable    = Handles(2);
-Angle             = Handles(3);
-Wavelength        = Handles(4);
-Length            = Handles(5);
-Percentage_Length = Handles(6);
-Thickness         = Handles(7);
-handle_fca        = Handles(8);
-Variable          = get(Handles(9),'Userdata');
-TM                = get(Handles(10),'Userdata');
-TE                = get(Handles(11),'Userdata');
+Version           = Handles{1};
+Sweep_Variable    = Handles{2};
+Angle             = Handles{3};
+Wavelength        = Handles{4};
+Length            = Handles{5};
+Percentage_Length = Handles{6};
+Thickness         = Handles{7};
+handle_fca        = Handles{8};
+Variable          = get(Handles{9},'Userdata');
+TM                = get(Handles{10},'Userdata');
+TE                = get(Handles{11},'Userdata');
 
 if Percentage_Length
     %Variable=Variable./Thickness;
 end
+
 X_min=Variable(1);
 X_max=Variable(length(Variable));
 
