@@ -1,26 +1,26 @@
 function lfosr_guivalues(CallBack_figure,CallBack_h,Handles)
 
-Lambda            =Handles(1);
-Theta             =Handles(2);
-A_Length          =Handles(3);
-Start             =Handles(4);
-Stop              =Handles(5);
-Angle             =Handles(6);
-Wavelength        =Handles(7);
-Layer             =Handles(8);
-Length            =Handles(9);
-Percentage_Length =Handles(10);
+Lambda            =Handles{1};
+Theta             =Handles{2};
+A_Length          =Handles{3};
+Start             =Handles{4};
+Stop              =Handles{5};
+Angle             =Handles{6};
+Wavelength        =Handles{7};
+Layer             =Handles{8};
+Length            =Handles{9};
+Percentage_Length =Handles{10};
 
 Program_call=get(CallBack_figure,'Tag');
 
 %Values
-who_called=(([Lambda Theta A_Length]-CallBack_h)==0);
-who_called=who_called(1)*1e2+who_called(2)*1e1+who_called(3)*1e0;
+%who_called=(([get(Lambda,'Value') get(Theta,'Value') get(A_Length,'Value')]-get(CallBack_h,'Value'))==0);
+%who_called=who_called(1)*1e2+who_called(2)*1e1+who_called(3)*1e0;
 
-switch who_called
-    case 100  %lambda callback
-        Start_default=Handles(11);
-        Stop_default=Handles(12);
+switch CallBack_h
+    case Lambda  %lambda callback
+        Start_default=Handles{11};
+        Stop_default=Handles{12};
         if get(Lambda,'Value')
             set(Theta,'Value',0)
             set(A_Length,'Value',0)
@@ -42,9 +42,9 @@ switch who_called
                     set(Percentage_Length,'Value',0)
             end
         end
-    case 010 %theta callback
-        Start_default=Handles(13);
-        Stop_default=Handles(14);
+    case Theta %theta callback
+        Start_default=Handles{13};
+        Stop_default=Handles{14};
         if get(Theta,'Value')
             set(Lambda,'Value',0)
             set(A_Length,'Value',0)
@@ -66,9 +66,9 @@ switch who_called
                     set(Percentage_Length,'Value',0)
             end
         end
-    case 001 %layer callback
-        Start_default=Handles(15);
-        Stop_default=Handles(16);
+    case A_Length %layer callback
+        Start_default=Handles{15};
+        Stop_default=Handles{16};
         if get(A_Length,'Value')
             set(Lambda,'Value',0)
             set(Theta,'Value',0)

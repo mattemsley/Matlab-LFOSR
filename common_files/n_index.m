@@ -21,7 +21,7 @@ function [n,error_n_index]=n_index(lambda,layer,warning_alert)
 %               layer: material ((X,1)matrix) of strings            %%
 %                                                                   %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-if ~(nargin==3|nargin==2)  %check that input has proper number of arguments
+if ~(nargin==3||nargin==2)  %check that input has proper number of arguments
     error('incorrect number of input arguments');
 end
 if ~exist('warning_alert')
@@ -35,14 +35,14 @@ warning off backtrace %turn on warning messages without file and line number mes
 %%%%%%%%%%%%%%%%%%%%%% Error Control of Inputs %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %check that lambda is number & > 0
-if any(lambda<=0)|isempty(lambda)|~isnumeric(lambda)
+if any(lambda<=0)||isempty(lambda)||~isnumeric(lambda)
     disp('Empty or Invalid Lambda Input: (Lambda must be greater then Zero)!!!!')
     error_n_index=1;
     n=NaN;
     return
 end
 %check that layer is a char string
-if isempty(layer)|~ischar(layer)
+if isempty(layer)||~ischar(layer)
     disp('Empty or Invalid Layer Input!!!!')
     error_n_index=1;
     n=NaN;
@@ -102,7 +102,6 @@ return
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [n,error_n_material]=n_material(lambda,layer,method,warning_alert)
 error_n_material=0; %initialize error flag
-layer
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% READ N DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

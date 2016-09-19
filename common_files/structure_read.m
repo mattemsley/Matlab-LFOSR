@@ -1,33 +1,33 @@
 function [names,numbers,error_structure_read]=structure_read(f_location)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%  structure_read.m                                                 %%
-%%  Date: 2/19/2001                                                  %%
-%%  Version: 1.0                                                     %%
-%%  Authors:  Matthew K. Emsley                                      %%
-%%                                                                   %%
-%%  Updates:                                                         %%
-%%           v1.0 2/19/2001 - First Release                          %%
-%%                                                                   %%
-%%  Description:  structure_read.m reads the structure file for      %%
-%%                LFOSR routines.  reads material string and layer   %%
-%%                thickness.                                         %%
-%%                                                                   %%
-%%  Inputs:  f_location == path of structure file  (string)          %%
-%%                                                                   %%
-%%  Outputs: names == layer material names ((N;1)string matrix)      %%
-%%           numbers == layer material thickness ((N;1)matrix)       %%
-%%           error_structure_read == Error coding, 0=no error,1=error%%
-%%                                                                   %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  structure_read.m                                                 %%
+%  Date: 2/19/2001                                                  %%
+%  Version: 1.0                                                     %%
+%  Authors:  Matthew K. Emsley                                      %%
+%                                                                   %%
+%  Updates:                                                         %%
+%           v1.0 2/19/2001 - First Release                          %%
+%                                                                   %%
+%  Description:  structure_read.m reads the structure file for      %%
+%                LFOSR routines.  reads material string and layer   %%
+%                thickness.                                         %%
+%                                                                   %%
+%  Inputs:  f_location == path of structure file  (string)          %%
+%                                                                   %%
+%  Outputs: names == layer material names ((N;1)string matrix)      %%
+%           numbers == layer material thickness ((N;1)matrix)       %%
+%           error_structure_read == Error coding, 0=no error,1=error%%
+%                                                                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if nargin~=1 %check for proper number of input arguments
    error('Incorrect number of input arguments.')
 end
 
 error_structure_read=0;  %set initial error flag to false
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%% OPEN STRUCTURE FILE %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% OPEN STRUCTURE FILE %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 fid=fopen(f_location,'r');  %open structure file
 if fid==-1 %check for error on open
    disp('Invalid file location or non-existing file in structure_read.m!!!!')
@@ -36,13 +36,13 @@ if fid==-1 %check for error on open
    error_structure_read=1;
    return
 end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%% END OPEN STRUCTURE FILE %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% END OPEN STRUCTURE FILE %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%% READ STRUCTURE FILE %%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% READ STRUCTURE FILE %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 temp_row=0;  %initialize row count
 temp_header_row=0; %initialize row + header count
 tempx=0; %initialize row vector
@@ -130,6 +130,6 @@ if status_c==-1 %error closing file
 end
       
 return
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%% END READ STRUCTURE FILE %%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%% END READ STRUCTURE FILE %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
