@@ -137,7 +137,7 @@ if exist('rows','var') & exist('columns','var')
       
       line(scale(1).*data_set(:,1),scale(2).*data_set(:,2),'Parent',FigAxes,...
          'LineWidth',3,'LineStyle','-','Color','k')
-      handle_leg = legend(FigAxes,'TM Simulated','TE Simulated','Measured',0);
+      handle_leg = legend(FigAxes,'TM Simulated','TE Simulated','Measured','location','best');
       set(handle_leg,'LineWidth',2)
       
    end

@@ -13,7 +13,7 @@ if versionnumber<5.3
 end
 
 handle_sim = plot(Variable,TM,Variable,TE,'LineWidth',3,'Parent',handle_fca);
-handle_leg = legend(handle_fca,'TM','TE',0);
+handle_leg = legend(handle_fca,'TM','TE','location','best');
 set(handle_leg,'LineWidth',2)
 set(handle_sim(1),'Color',[0 0 1],'LineStyle','-.')
 set(handle_sim(2),'Color',[0 .5 0],'LineStyle',':')
