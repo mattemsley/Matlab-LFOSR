@@ -672,19 +672,20 @@ if strcmp(action,'initialize')
 
     if strcmpi(user_selection,'biosensor')
         set(Layer_text,'String','Bio Layer Number')
-        set(Length,'Enable','off')
+        set(Layer,'Enable','on')
     elseif strcmpi(user_selection,'textured')
-        set(Length_text,'String','Textured Layer Number')
-        set(Length,'Enable','on')
+        set(Layer_text,'String','Textured Layer Number')
+        set(Layer,'Enable','on')
     else
-        set(Length,'Enable','off')
+        set(Layer_text,'String','Not Used')
+        set(Layer,'Enable','off')
     end
 
     %              1      2     3        4     5    6     7          8
     %   9      10
     %   11                       12
     %   13                       14
-    %   15             Lambda          16
+    %   15             Lambda          16f
     Radio_Handles={Lambda Theta A_Length Start Stop Angle Wavelength Layer ...
         Length Percentage_Length Start_lambdasweep_default Stop_lambdasweep_default ...
         Start_thetasweep_default Stop_thetasweep_default ...
@@ -966,7 +967,6 @@ elseif strcmp(action,'run')
     if strcmp(Path,'structure.txt')
         Path=which('structure.txt');
     end
-
     [lambda,refractive_index,thickness,theta,error_lfosr_input] = lfosr_input(LFOSRVersion,...
         Start,Stop,Points,Angle,Wavelength,Layer,Length,Percentage_Length,Path,Sweep_Variable,Timedebug,...
         User_selection,n_index_warning_alert,Line_suppress);

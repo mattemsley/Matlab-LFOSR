@@ -825,7 +825,7 @@ case 'film' %Film Called
     case 010 %theta sweep
         Angle=NaN;
         Wavelength=lambda_data;
-        
+        Layer=1;
         %         1        2              3     4          5     6
         Data_R_h={FVersion,Sweep_Variable,Angle,Wavelength,Layer,Percentage_Length,thickness_data(1,Layer),...
                 handle_fca,Variable_h,R_TM_h,R_TE_h};

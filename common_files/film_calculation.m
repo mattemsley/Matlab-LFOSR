@@ -99,9 +99,9 @@ case 010 %theta sweep
    PP=[theta';P_TM';P_TE'];
    
 case 001 %thickness sweep
-   RR=[thickness(:,Layer)';R_TM';R_TE'];
-   TT=[thickness(:,Layer)';T_TM';T_TE'];
-   PP=[thickness(:,Layer)';P_TM';P_TE'];
+   RR=[thickness(:,Length)';R_TM';R_TE'];
+   TT=[thickness(:,Length)';T_TM';T_TE'];
+   PP=[thickness(:,Length)';P_TM';P_TE'];
    
 otherwise
    error('Unsupported sweep variable.')

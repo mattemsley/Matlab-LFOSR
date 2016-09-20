@@ -1,35 +1,35 @@
 function [x_position,lambda_position,magnitude_E,thickness_total,error]=PropagationTE(lambda,refractive_index,thickness,incremental_distance,theta)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%  PropagationTM.m                                                  %%
-%%  Version: 2.0                                                     %%
-%%  Authors:  Gokhan Ulu                                             %%
-%%            Matthew K. Emsley                                      %%
-%%                                                                   %%
-%%  Updates: v2.0 05/11/2000 - Update to handle matrix inputs for    %%
-%%                            lambda and theta individually          %%
-%%                            output now an array                    %%
-%%           v1.0 12/16/1999 - First Release                         %%
-%%                                                                   %%
-%%  Description:  QuantumEffTE.m calculates the quantum efficiency   %%
-%%                of an active layer placed between two mirrors      %%
-%%                using film scattering matrix calculations.         %%
-%%                                                                   %%
-%%  Limitations:  1) Quantum Efficiency are only                     %%
-%%                calculated for TE Polarization                     %%
-%%                2) Supported materials only include Silicon,       %%
-%%                Air, and Silicon Dioxide.                          %%
-%%                                                                   %%
-%%  Inputs:  ALL POINTS IN NANOMETERS!!!                             %%  
-%%           Lambda == Wavelength in nanometers  (scaler)            %%
-%%           Layer == matrix containing material types ((1;x)matrix) %%
-%%           Thickness == matrix containing layer thicknesses        %%
-%%                        in nanometers ((1;x) matrix)               %%
-%%           Theta == Incident angle of wave in Degrees (scaler)     %%
-%%           active_layer == Indentified active region (integer)         %% 
-%%                                                                   %%
-%%  Outputs: QE == Quantum Efficiency value (QE)(scaler)             %%
-%%           Error == Error coding, 0 = no error, 1 = error          %%
-%%                                                                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  PropagationTM.m                                                  %%
+%  Version: 2.0                                                     %%
+%  Authors:  Gokhan Ulu                                             %%
+%            Matthew K. Emsley                                      %%
+%                                                                   %%
+%  Updates: v2.0 05/11/2000 - Update to handle matrix inputs for    %%
+%                            lambda and theta individually          %%
+%                            output now an array                    %%
+%           v1.0 12/16/1999 - First Release                         %%
+%                                                                   %%
+%  Description:  QuantumEffTE.m calculates the quantum efficiency   %%
+%                of an active layer placed between two mirrors      %%
+%                using film scattering matrix calculations.         %%
+%                                                                   %%
+%  Limitations:  1) Quantum Efficiency are only                     %%
+%                calculated for TE Polarization                     %%
+%                2) Supported materials only include Silicon,       %%
+%                Air, and Silicon Dioxide.                          %%
+%                                                                   %%
+%  Inputs:  ALL POINTS IN NANOMETERS!!!                             %%  
+%           Lambda == Wavelength in nanometers  (scaler)            %%
+%           Layer == matrix containing material types ((1;x)matrix) %%
+%           Thickness == matrix containing layer thicknesses        %%
+%                        in nanometers ((1;x) matrix)               %%
+%           Theta == Incident angle of wave in Degrees (scaler)     %%
+%           active_layer == Indentified active region (integer)     %% 
+%                                                                   %%
+%  Outputs: QE == Quantum Efficiency value (QE)(scaler)             %%
+%           Error == Error coding, 0 = no error, 1 = error          %%
+%                                                                   %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -40,25 +40,25 @@ function [x_position,lambda_position,magnitude_E,thickness_total,error]=Propagat
 [thickness_m,thickness_n]=size(thickness);
 [refractive_index_m,refractive_index_n]=size(refractive_index);
 
-if isempty(refractive_index)==1|refractive_index_n==1
+if isempty(refractive_index)==1||refractive_index_n==1
     disp('Invalid or Empty Layer Structure!!!')
     error=1;
     magnitude_E=NaN;
     x_position=NaN;
     return
-elseif isempty(thickness)==1|length(thickness)==1
+elseif isempty(thickness)==1||length(thickness)==1
     disp('Invalid or Empty Thickness Structure!!!')
     error=1;
     magnitude_E=NaN;
     x_position=NaN;
     return
-elseif any(theta<0)|any(theta>90)|isempty(theta)==1
+elseif any(theta(:)<0)||any(theta(:)>90)||isempty(theta)==1
     disp('Invalid Theta-Angle Input:  Must be 0<=THETA<=180!!!')
     error=1;
     magnitude_E=NaN;
     x_position=NaN;
     return
-elseif any(lambda<=0)|isempty(lambda)==1
+elseif any(lambda(:)<=0)||isempty(lambda)==1
     disp('Invalid Lambda Input:  Lambda must be greater then Zero!!!!')
     error=1;
     magnitude_E=NaN;
@@ -90,7 +90,7 @@ elseif theta_n>1
     magnitude_E=NaN;
     x_position=NaN;
     return
-elseif lambda_m>1&theta_m>1&thickness_m>1
+elseif lambda_m>1&&theta_m>1&&thickness_m>1
     disp(['Invalid Lambda, Theta, and Thickness input: ',...
             'Can only have one multivariable per run!!!!'])
     error=1;

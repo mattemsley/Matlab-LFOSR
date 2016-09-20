@@ -58,21 +58,21 @@ if isempty(refractive_index)||refractive_index_n==1
    T=NaN;
    P=NaN;
    return
-elseif isempty(thickness)||length(thickness)==1||any(thickness<0)
+elseif isempty(thickness)||length(thickness)==1||any(thickness(:)<0)
    disp('Invalid or Empty Thickness Structure!!!')
    error=1;
    R=NaN;
    T=NaN;
    P=NaN;
    return
-elseif any(theta<0)||any(theta>90)||isempty(theta)
+elseif any(theta(:)<0)||any(theta(:)>90)||isempty(theta)
    disp('Invalid Theta-Angle Input:  Must be 0<=THETA<=180!!!')
    error=1;
    R=NaN;
    T=NaN;
    P=NaN;
    return
-elseif any(lambda<=0)||isempty(lambda)
+elseif any(lambda(:)<=0)||isempty(lambda)
    disp('Invalid Lambda Input:  Lambda must be greater then Zero!!!!')
    error=1;
    R=NaN;

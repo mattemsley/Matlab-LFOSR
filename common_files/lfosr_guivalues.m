@@ -34,7 +34,9 @@ switch CallBack_h
             set(Wavelength,'Enable','off')
             switch Program_call
                 case 'FILM'
-                    set(Layer,'Enable','off')
+                    set(Length,'Enable','off')
+                    set(Percentage_Length,'Enable','off')
+                    set(Percentage_Length,'Value',0)
                 case 'DETECTOR'
                     set(Layer,'Enable','on')
                     set(Length,'Enable','off')
@@ -58,7 +60,9 @@ switch CallBack_h
             set(Wavelength,'Enable','on')
             switch Program_call
                 case 'FILM'
-                    set(Layer,'Enable','off')
+                    set(Length,'Enable','off')
+                    set(Percentage_Length,'Enable','off')
+                    set(Percentage_Length,'Value',0)
                 case 'DETECTOR'
                     set(Layer,'Enable','on')
                     set(Length,'Enable','off')
@@ -80,9 +84,17 @@ switch CallBack_h
             set(Stop,'String',Stop_default)
             set(Angle,'Enable','on')
             set(Wavelength,'Enable','on')
-            set(Layer,'Enable','on')
-            set(Length,'Enable','on')
-            set(Percentage_Length,'Enable','on')
+            switch Program_call
+                case 'FILM'
+                    set(Length,'Enable','on')
+                    set(Percentage_Length,'Enable','on')
+                    set(Percentage_Length,'Value',0)
+                case 'DETECTOR'
+                    set(Layer,'Enable','on')
+                    set(Length,'Enable','on')
+                    set(Percentage_Length,'Enable','on')
+                    set(Percentage_Length,'Value',0)
+            end
         end
     otherwise
         error('Unsupported sweep variable.')

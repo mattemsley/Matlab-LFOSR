@@ -59,7 +59,6 @@ TE                = get(Handles{11},'Userdata');
 if Percentage_Length
     %Variable=Variable./Thickness;
 end
-
 X_min=Variable(1);
 X_max=Variable(length(Variable));
 
@@ -220,7 +219,7 @@ return
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function lfosr_plot(Variable,TM,TE,handle_fca,TitleString,XlabelString,YlabelString,...
-    Start,Stop,X_tick,Y_min,Y_max,Y_tick)
+    Start_var,Stop_var,X_tick,Y_min,Y_max,Y_tick)
 
 [StartFigTextColor,StartFigBackColor,OutputFigTextColor,OutputFigBackColor,...
     ButtonTextColor,ButtonBackColor,EditTextColor,EditBackColor,...
@@ -271,7 +270,7 @@ set(handle_fca,...
     'XColor',OutputFigTextColor,...
     'YColor',OutputFigTextColor)
 
-axis([Start Stop Y_min Y_max])
+axis([Start_var Stop_var Y_min Y_max])
 
 if ~isempty(Y_tick)
     set(handle_fca,'YTick',Y_tick)

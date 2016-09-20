@@ -40,22 +40,22 @@ function [QE,error,A,B]=QuantumEffTE(lambda,refractive_index,thickness,theta,act
 [thickness_m,thickness_n]=size(thickness);
 [refractive_index_m,refractive_index_n]=size(refractive_index);
 
-if isempty(refractive_index)==1|refractive_index_n==1
+if isempty(refractive_index)==1||refractive_index_n==1
     disp('Invalid or Empty Layer Structure!!!')
     error=1;
     QE=NaN;
     return
-elseif isempty(thickness)==1|length(thickness)==1
+elseif isempty(thickness)==1||length(thickness)==1
     disp('Invalid or Empty Thickness Structure!!!')
     error=1;
     QE=NaN;
     return
-elseif any(theta<0)|any(theta>90)|isempty(theta)==1
+elseif any(theta(:)<0)||any(theta(:)>90)||isempty(theta)==1
     disp('Invalid Theta-Angle Input:  Must be 0<=THETA<=180!!!')
     error=1;
     QE=NaN;
     return
-elseif any(lambda<=0)|isempty(lambda)==1
+elseif any(lambda(:)<=0)||isempty(lambda)==1
     disp('Invalid Lambda Input:  Lambda must be greater then Zero!!!!')
     error=1;
     QE=NaN;
@@ -66,7 +66,7 @@ elseif refractive_index_n~=thickness_n
     error=1;
     QE=NaN;
     return
-elseif any(thickness<0)
+elseif any(thickness(:)<0)
     disp(['Invalid Thickness structure: ',...
         'No elements can be less then Zero thickness!!!!'])
     error=1;
@@ -82,7 +82,7 @@ elseif theta_n>1
     error=1;
     QE=NaN;
     return
-elseif lambda_m>1&theta_m>1&thickness_m>1
+elseif lambda_m>1&&theta_m>1&&thickness_m>1
     disp(['Invalid Lambda, Theta, and Thickness input: ',...
         'Can only have one multivariable per run!!!!'])
     error=1;
