@@ -1,4 +1,4 @@
-C:\Users\memsley117715\Documents\MATLAB\si-optimized.txt
+structure.txt
 300
 1200
 0
@@ -14,5 +14,5 @@ C:\Users\memsley117715\Documents\MATLAB\si-optimized.txt
 0
 0
 1
-1
+0
 0
