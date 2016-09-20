@@ -156,7 +156,7 @@ theta=theta.*pi./180;  %convert theta into radians
 for j=1:no_layers
     temp_thickperlambda(:,j)=thickness(:,j)./lambda;
     if 1==1
-        wavelength_threshold=500;
+        wavelength_threshold=5000;
         if min(lambda)<wavelength_threshold
             limited_thickness=min(-log(1e-15)./absorp_byrindex(lambda,refractive_index(:,j)),...
                 thickness(:,j));

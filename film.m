@@ -1135,8 +1135,8 @@ elseif strcmp(action,'run')
         %  florescent power above reflecting layer
         %
         if strcmpi(User_selection,'power')
-            Power_TM=(abs(1+RR(2,:).*exp(i.*PP(2,:)))).^2;
-            Power_TE=(abs(1+RR(3,:).*exp(i.*PP(3,:)))).^2;
+            Power_TM=(abs(1+RR(2,:).*exp(1i.*PP(2,:)))).^2;
+            Power_TE=(abs(1+RR(3,:).*exp(1i.*PP(3,:)))).^2;
             switch Sweep_Variable
                 case 100
                     Answer_Matrix = [lambda';Power_TM;Power_TE];
@@ -1154,8 +1154,6 @@ elseif strcmp(action,'run')
             
         end
 
-
-
         if strcmpi(User_selection,'max')
             [R_tm,I_tm]=max(RR(2,:));
             [R_te,I_te]=max(RR(3,:));
@@ -1169,6 +1167,7 @@ elseif strcmp(action,'run')
             disp(['Minimum TE Reflectivity = ',num2str(R_te_m,'%16.15e'),' @ ',num2str(RR(1,I_te_m)),'nm'])
             disp(' ')
         end
+        
         if strcmpi(User_selection,'biosensor')
             [T_tm,I_tm]=max(TT(2,:));
             [T_te,I_te]=max(TT(3,:));
