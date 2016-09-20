@@ -1,16 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%            Film Structure File              %%
-%% Please refer to http://mosfet.bu.edu/LFOSR/ %%
-%% for a list of available materials           %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                Top to Bottom                %%
-%%             Layer||Thickness (nm)           %%
-%%          ALL POINTS IN NANOMETERS !!!       %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-air            10.000000
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%            Film Structure File               %%
+%% Please refer to http://mattemsley.com/LFOSR/ %%
+%% for a list of available materials            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                Top to Bottom                 %%
+%%             Layer||Thickness (nm)            %%
+%%          ALL POINTS IN NANOMETERS !!!        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+air             10.000000
 sio2            1070.000000
 si              1500.000000
-ge_annealed     1440.000000
+ge              1440.000000
 si              184.000000
-sio2_adi_pecvd  3500
+sio2            3500
 al              10.000000
