@@ -926,6 +926,9 @@ elseif strcmp(action,'run')
 
     n_index_warning_alert = 1; %turn on wavelength range warnings
 
+    if strcmp(Path,'structure.txt')
+        Path=which('structure.txt');
+    end
     [lambda,refractive_index,thickness,theta,error_lfosr_input]=lfosr_input(LFOSRVersion,...
         Start,Stop,Points,Angle,Wavelength,Layer,Length,Percentage_Length,Path,Sweep_Variable,Timedebug,...
         User_selection,n_index_warning_alert,Line_suppress);
