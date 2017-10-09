@@ -95,8 +95,8 @@ function []=film(action)
 %            structure_modify.m - saves thickness to new structure  %
 %            structure_read.m - read structure file input           %
 %            structure_select.m - for structure selection at start  %
-%            ..\index_data\*.k - k data of material               %
-%            ..\index_data\*.n - n data of material               %
+%            ..\index_data\*.k - k data of material                 %
+%            ..\index_data\*.n - n data of material                 %
 %                                                                   %
 %  Inputs:                                                          %
 %           action == control input(eval,close,info,intialize,save) %
@@ -361,7 +361,7 @@ if strcmp(action,'initialize')
         'Position',[center-.07 .276 .28 bigtxtHt], ...
         'String','Choose Layer', ...
         'Style','text');
-    
+
     uicontrol('Parent',handle, ...
         'Units','normalized', ...
         'BackgroundColor',StartFigBackColor, ...
@@ -543,7 +543,7 @@ if strcmp(action,'initialize')
         'Position',[marginleft+2*(editWidth+spacing1) .38+editHt txtWidth txtHt], ...
         'String','Data Points', ...
         'Style','text');
-    uicontrol('Parent',handle, ...  %Points = 
+    uicontrol('Parent',handle, ...  %Points =
         'Units','normalized', ...
         'BackgroundColor',EditBackColor, ...
         'ForegroundColor',EditTextColor,...
@@ -785,7 +785,7 @@ if strcmp(action,'initialize')
     set(Edit_structure,'CallBack','structure_select(gcbo,get(gcbo,''UserData''))')
 
     %%%%%%%%%% Output Graphs %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    uicontrol('Parent',handle, ...  %Slider_Bar = 
+    uicontrol('Parent',handle, ...  %Slider_Bar =
         'Units','normalized', ...
         'BackgroundColor',StartFigBackColor, ...
         'ForegroundColor',StartFigTextColor,...
@@ -806,7 +806,7 @@ if strcmp(action,'initialize')
     %    set(Slider_Bar,'Visible','on');
     %end
 
-    uicontrol('Parent',handle, ...  %Timedebug = 
+    uicontrol('Parent',handle, ...  %Timedebug =
         'Units','normalized', ...
         'BackgroundColor',StartFigBackColor, ...
         'ForegroundColor',StartFigTextColor,...
@@ -998,7 +998,7 @@ elseif strcmp(action,'run')
             [x_position_TE,lambda_position_TE,magnitude_E_TE,thickness_total,error_film_calculation]=propagation_calculation(lambda,theta,thickness,...
                 refractive_index,2,Sweep_Variable,Timedebug,Line_suppress);
         elseif strcmpi(User_selection,'textured')
-            
+
             RR_metal(1,:)=lambda;
             if 1==0
                 % Ag Reflectance
@@ -1010,25 +1010,25 @@ elseif strcmp(action,'run')
                 RR_metal(2,:)=ones(1,length(lambda));
                 RR_metal(3,:)=ones(1,length(lambda));
             end
-            
+
             if 1==0
                 Textured_Angle=54.84;
                 [RR_a,TT_a,PP_a,error_film_calculation] = film_calculation(lambda,theta,thickness,...
                     refractive_index,Layer,Length,Sweep_Variable,Timedebug,Line_suppress,User_selection);
-                
+
                 [RR_b,TT_b,PP_b,error_film_calculation] = film_calculation(lambda,theta+Textured_Angle,thickness,...
                     refractive_index,Layer,Length,Sweep_Variable,Timedebug,Line_suppress,User_selection);
-                
+
                 [RR_c,TT_c,PP_c,error_film_calculation] = film_calculation(lambda,180-3*Textured_Angle-theta,thickness,...
                     refractive_index,Layer,Length,Sweep_Variable,Timedebug,Line_suppress,User_selection);
             else
                 Textured_Angle=54.84;
                 [RR_a,TT_a,PP_a,error_film_calculation] = film_calculation(lambda,54.7,thickness,...
                     refractive_index,Layer,Length,Sweep_Variable,Timedebug,Line_suppress,User_selection);
-                
+
                 [RR_b,TT_b,PP_b,error_film_calculation] = film_calculation(lambda,15.8,thickness,...
                     refractive_index,Layer,Length,Sweep_Variable,Timedebug,Line_suppress,User_selection);
-                
+
                 [RR_c,TT_c,PP_c,error_film_calculation] = film_calculation(lambda,78.9,thickness,...
                     refractive_index,Layer,Length,Sweep_Variable,Timedebug,Line_suppress,User_selection);
 
@@ -1063,7 +1063,7 @@ elseif strcmp(action,'run')
                 RR(2,:)=Metal_Coverage.*(RR_metal(2,:)/2+RR_metal(3,:)/2)+...
                     Non_Metal_Coverage.*((Tf/T)*(RR_a(2,:)/2+RR_a(3,:)/2)+(1-Tf/T)*(RR_b(2,:).*RR_c(2,:)./2.+RR_b(3,:).*RR_c(3,:)./2));
                 RR(3,:)=RR(2,:);
-                
+
                 TT(1,:)=TT_a(1,:);
                 TT(2,:)=Metal_Coverage.*(0)+...
                     Non_Metal_Coverage.*((Tf/T)*(TT_a(2,:)/2+TT_a(3,:)/2)+(1-Tf/T)*(TT_b(2,:)/2+TT_b(3,:)/2+...
@@ -1076,12 +1076,12 @@ elseif strcmp(action,'run')
                     RR(2,:)=((Tf/T)*(RR_a(2,:)/2+RR_a(3,:)/2)+...
                         (1-Tf/T)*(RR_b(2,:).*RR_c(2,:)./2.+RR_b(3,:).*RR_c(3,:)./2));
                     RR(3,:)=RR(2,:);
-                    
+
                     TT(1,:)=TT_a(1,:);
                     TT(2,:)=((Tf/T)*(TT_a(2,:)/2+TT_a(3,:)/2)+(1-Tf/T)*(TT_b(2,:)/2+TT_b(3,:)/2+...
                         RR_b(2,:).*TT_c(2,:)./2.+RR_b(3,:).*TT_c(3,:)./2));
                     TT(3,:)=TT(2,:);
-                    
+
                 else
                     RR(1,:)=RR_a(1,:);
                     RR(2,:)=0.6834.*(RR_a(2,:).*RR_b(2,:)./2+RR_a(3,:).*RR_b(3,:)./2)+...
@@ -1092,14 +1092,14 @@ elseif strcmp(action,'run')
                         0.0014.*(RR_a(2,:).*RR_c(2,:).*RR_e(2,:).*RR_h(2,:).*RR_i(2,:)./2+RR_a(3,:).*RR_c(3,:).*RR_e(3,:).*RR_h(3,:).*RR_i(3,:)./2)+...
                         0.0010.*(RR_a(2,:).*RR_c(2,:).*RR_e(2,:).*RR_h(2,:)./2+RR_a(3,:).*RR_c(3,:).*RR_e(3,:).*RR_h(3,:)./2);
                     RR(3,:)=RR(2,:);
-                    
+
                     TT(1,:)=TT_a(1,:);
                     TT(2,:)=((Tf/T)*(TT_a(2,:)/2+TT_a(3,:)/2)+(1-Tf/T)*(TT_b(2,:)/2+TT_b(3,:)/2+...
                         RR_b(2,:).*TT_c(2,:)./2.+RR_b(3,:).*TT_c(3,:)./2));
                     TT(3,:)=TT(2,:);
                 end
             end
-            
+
             %
             % Longwavelength filter for inteference fringes lost by
             % spectral measurement
@@ -1107,16 +1107,16 @@ elseif strcmp(action,'run')
             if 1==0
                 ave_points_buffer=find(RR(1,:)>500 & RR(1,:)<700);
                 ave_points_forfilter=find(RR(1,:)>500);
-                
+
                 filterlength=length(ave_points_forfilter)-length(ave_points_buffer);
-                
+
                 a_filt = 1;
                 windowSize = round(filterlength/3);
                 b_filt=ones(1,windowSize)/windowSize;
 
                 RR_temp2=RR(2,ave_points_buffer);
                 RR_temp3=RR(3,ave_points_buffer);
-                
+
                 RR(2,ave_points_forfilter)=filter(b_filt,a_filt,RR(2,ave_points_forfilter));
                 RR(3,ave_points_forfilter)=filter(b_filt,a_filt,RR(3,ave_points_forfilter));
 
@@ -1151,7 +1151,7 @@ elseif strcmp(action,'run')
         if strcmpi(User_selection,'nonpolarized')
             RR(2,:)=RR(2,:)/2+RR(3,:)/2;
             RR(3,:)=RR(2,:);
-            
+
         end
 
         if strcmpi(User_selection,'max')
@@ -1167,7 +1167,7 @@ elseif strcmp(action,'run')
             disp(['Minimum TE Reflectivity = ',num2str(R_te_m,'%16.15e'),' @ ',num2str(RR(1,I_te_m)),'nm'])
             disp(' ')
         end
-        
+
         if strcmpi(User_selection,'biosensor')
             [T_tm,I_tm]=max(TT(2,:));
             [T_te,I_te]=max(TT(3,:));
@@ -1312,7 +1312,7 @@ elseif strcmp(action,'save'),
     if fid==-1 %check for error on open
         error('Unable to open file.')
     end
-    fgetl(fid);  %line_temp                 = 
+    fgetl(fid);  %line_temp                 =
     Start_lambdasweep_default = str2double(fgetl(fid));
     Stop_lambdasweep_default  = str2double(fgetl(fid));
     Start_thetasweep_default  = str2double(fgetl(fid));

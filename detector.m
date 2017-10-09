@@ -9,7 +9,7 @@ function []=detector(action)
 %            Rachel Kaplan                                          %
 %                                                                   %
 %  Updates:                                                         %
-%            v3.41 10/31/2005 Changes to modify thickness of       %
+%            v3.41 10/31/2005 Changes to modify thickness of        %
 %            non active layers                                      %
 %            v3.40 07/02/2002                                       %
 %                                                                   %
@@ -370,7 +370,7 @@ if strcmp(action,'initialize')
         'Position',[.35 .485 .3 txtHt], ...
         'String','(All lengths given in nanometers!)', ...
         'Style','text');
-    
+
     Percentage_Length = uicontrol('Parent',handle, ...
         'Units','normalized', ...
         'BackgroundColor',StartFigBackColor, ...
@@ -386,7 +386,7 @@ if strcmp(action,'initialize')
         'Value',Percentage_Length_default,...
         'Style','checkbox', ...
         'Tag','Detector_Percentage_Length');
-    
+
     userselect_h2 = uicontrol('Parent',handle, ...
         'Units','normalized', ...
         'BackgroundColor',StartFigBackColor, ...
@@ -524,7 +524,7 @@ if strcmp(action,'initialize')
         'Position',[marginleft+2*(editWidth+spacing1) .38+editHt txtWidth txtHt], ...
         'String','Data Points', ...
         'Style','text');
-    uicontrol('Parent',handle, ... %Points = 
+    uicontrol('Parent',handle, ... %Points =
         'Units','normalized', ...
         'BackgroundColor',EditBackColor, ...
         'ForegroundColor',EditTextColor,...
@@ -756,7 +756,7 @@ if strcmp(action,'initialize')
     set(Edit_structure,'CallBack','structure_select(gcbo,get(gcbo,''UserData''))')
 
     %%%%%%%%%% Output Graphs %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    uicontrol('Parent',handle, ... %Slider_Bar = 
+    uicontrol('Parent',handle, ... %Slider_Bar =
         'Units','normalized', ...
         'BackgroundColor',StartFigBackColor, ...
         'ForegroundColor',StartFigTextColor,...
@@ -772,7 +772,7 @@ if strcmp(action,'initialize')
         'Style','checkbox', ...
         'Tag','Detector_Slider_Bar');
 
-    uicontrol('Parent',handle, ... %Timedebug = 
+    uicontrol('Parent',handle, ... %Timedebug =
         'Units','normalized', ...
         'BackgroundColor',StartFigBackColor, ...
         'ForegroundColor',StartFigTextColor,...
@@ -932,7 +932,7 @@ elseif strcmp(action,'run')
     [lambda,refractive_index,thickness,theta,error_lfosr_input]=lfosr_input(LFOSRVersion,...
         Start,Stop,Points,Angle,Wavelength,Layer,Length,Percentage_Length,Path,Sweep_Variable,Timedebug,...
         User_selection,n_index_warning_alert,Line_suppress);
-    
+
     %
     %check for error in execution of setup routine stop execution if unsuccessful
     %
@@ -954,24 +954,24 @@ elseif strcmp(action,'run')
         %
         [QE,error_detector_calculation]=detector_calculation(lambda,theta,thickness,...
             refractive_index,Layer,Length,Sweep_Variable,Timedebug,Line_suppress);
-        
+
         if strcmpi(User_selection,'peakqeff')
             h           =6.62617e-34;        %Planck constant [J.s]
             c           =2.998e8;            %Speed of Light in Vacuum [m/s]
             q_e         =1.60218e-19;        %Elementary charge [C]
-            
+
             disp(['Max Quantum Efficiency: ',num2str(max(QE(2,:)))])
             disp(['Min Quantum Efficiency: ',num2str(min(QE(2,:)))])
             disp(' ')
             disp(['Max Responsivity: ',num2str(max(QE(2,:)'.*q_e.*lambda.*1e-9./h./c))])
             disp(['Min Responsivity: ',num2str(min(QE(2,:)'.*q_e.*lambda.*1e-9./h./c))])
         end
-        
+
         if strcmpi(User_selection,'nonpolarized')
             QE(2,:)=QE(2,:)./2+QE(3,:)./2;
             QE(3,:)=QE(2,:);
-        end   
-            
+        end
+
         if strcmpi(User_selection,'solar')
             h    =6.62617e-34;   %Planck constant [J.s]
             c    =2.998e8;       %Speed of Light in Vacuum [m/s]
@@ -980,14 +980,14 @@ elseif strcmp(action,'run')
             k_b  =1.38066e-23;   %Boltzmann constant [J/K]
             n_i  =1.01e10*100^3; %Intrinsic conc in Si [m^-3]
             N_a  =1e15*100^3;    %Source/Drain Doping [m^-3]
-            
+
             load solarspectra.mat
             solarirradiance_int(:,1)=lambda;
             solarirradiance_int(:,2)=interp1(solarirradiance(:,1),solarirradiance(:,2),lambda,'nearest','extrap'); %W/m^2/nm
 
             QE(2,:)=solarirradiance_int(:,2)'.*QE(2,:).*lambda'.*1e-9./h./c.*q_e; %A/m^2/nm - TM
             QE(3,:)=solarirradiance_int(:,2)'.*QE(3,:).*lambda'.*1e-9./h./c.*q_e; %A/m^2/nm - TE
-            
+
             integratedincidentpowerperunitarea=cumtrapz(solarirradiance(:,1),solarirradiance(:,2));
             totalincidientpowerperunitarea=integratedincidentpowerperunitarea(end);
 
@@ -996,9 +996,9 @@ elseif strcmp(action,'run')
             integratedpowerperunitarea_TE=cumtrapz(lambda,QE(3,:));
             totalpowerperunitarea_TE=integratedpowerperunitarea_TE(end);
             totalpowerperunitarea=totalpowerperunitarea_TE/2+totalpowerperunitarea_TM/2;
-            
+
             V_oc=k_b*T/q_e*log((N_a+(totalpowerperunitarea./q_e))*totalpowerperunitarea./q_e/n_i^2);
-            
+
             cellefficiency=(totalpowerperunitarea*V_oc)/totalincidientpowerperunitarea;
 
             disp(['Incident Power = ',num2str(totalincidientpowerperunitarea,4),' W/m^2 ',...
@@ -1014,21 +1014,21 @@ elseif strcmp(action,'run')
             [lambda_low,refractive_index_low,thickness,theta,error_lfosr_input]=lfosr_input(LFOSRVersion,...
                 Start+mono_bandwidth,Stop+mono_bandwidth,Points,Angle,Wavelength,Layer,Length,Percentage_Length,Path,Sweep_Variable,Timedebug,...
                 User_selection,n_index_warning_alert,Line_suppress);
-            
+
             [QE_low,error_detector_calculation]=detector_calculation(lambda_low,theta,thickness,...
                 refractive_index_low,Layer,Length,Sweep_Variable,Timedebug,Line_suppress);
-            
+
             [lambda_high,refractive_index_high,thickness,theta,error_lfosr_input]=lfosr_input(LFOSRVersion,...
                 Start-mono_bandwidth,Stop-mono_bandwidth,Points,Angle,Wavelength,Layer,Length,Percentage_Length,Path,Sweep_Variable,Timedebug,...
                 User_selection,n_index_warning_alert,Line_suppress);
 
             [QE_high,error_detector_calculation]=detector_calculation(lambda_high,theta,thickness,...
                 refractive_index_high,Layer,Length,Sweep_Variable,Timedebug,Line_suppress);
-    
+
             QE(2,:)=(QE_low(2,:)+QE(2,:)+QE_high(2,:))./3;
-            QE(3,:)=(QE_low(3,:)+QE(3,:)+QE_high(3,:))./3;            
+            QE(3,:)=(QE_low(3,:)+QE(3,:)+QE_high(3,:))./3;
         end
-        
+
         if strcmpi(User_selection,'pda')
             h    =6.62617e-34;   %Planck constant [J.s]
             c    =2.998e8;       %Speed of Light in Vacuum [m/s]
@@ -1037,7 +1037,7 @@ elseif strcmp(action,'run')
             k_b  =1.38066e-23;   %Boltzmann constant [J/K]
             n_i  =1.01e10*100^3; %Intrinsic conc in Si [m^-3]
             N_a  =1e15*100^3;    %Source/Drain Doping [m^-3
-            
+
             pda_source=3;
             switch pda_source
                 case 1
@@ -1053,7 +1053,7 @@ elseif strcmp(action,'run')
                     pdadata(:,1)=lambda;
                     pdadata(:,2)=interp1(CadmiumTungstate(:,1),CadmiumTungstate(:,2),lambda,'nearest','extrap'); %W/nm
             end
-            
+
             QE(2,:)=pdadata(:,2)'.*QE(2,:).*lambda'.*1e-9./h./c.*q_e; %A/nm - TM
             QE(3,:)=pdadata(:,2)'.*QE(3,:).*lambda'.*1e-9./h./c.*q_e; %A/nm - TE
 
@@ -1065,7 +1065,7 @@ elseif strcmp(action,'run')
             integratedcurrent_TE=cumtrapz(lambda,QE(3,:));
             totalcurrent_TE=integratedcurrent_TE(end);
             totalcurrent=totalcurrent_TE/2+totalcurrent_TM/2;
- 
+
             disp(['Incident Power = ',num2str(totalincidientpower,4),' W ',...
                 'Generated Current = ',num2str(totalcurrent,4),' A '])
 
@@ -1278,4 +1278,3 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%% END CLOSE PROGRAM INTERFACE %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
