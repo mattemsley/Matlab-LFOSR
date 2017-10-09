@@ -90,8 +90,8 @@ function []=detector(action)
 %                     structure_read.m - read structure file input  %
 %                     detector_defaults.com - gui defaults          %
 %                     structure.txt - default layer structure file  %
-%                     ..\index_data\*.kkk - k data of material      %
-%                     ..\index_data\*.nnn - n data of material      %
+%                     ..\index_data\*.k - k data of material        %
+%                     ..\index_data\*.n - n data of material        %
 %                                                                   %
 %  Inputs:  action == control input (eval,close,info,intialize,save)%
 %                                                                   %
@@ -1278,3 +1278,4 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%% END CLOSE PROGRAM INTERFACE %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

@@ -95,8 +95,8 @@ function []=film(action)
 %            structure_modify.m - saves thickness to new structure  %
 %            structure_read.m - read structure file input           %
 %            structure_select.m - for structure selection at start  %
-%            ..\index_data\*.kkk - k data of material               %
-%            ..\index_data\*.nnn - n data of material               %
+%            ..\index_data\*.k - k data of material               %
+%            ..\index_data\*.n - n data of material               %
 %                                                                   %
 %  Inputs:                                                          %
 %           action == control input(eval,close,info,intialize,save) %

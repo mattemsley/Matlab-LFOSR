@@ -106,7 +106,7 @@ error_n_material=0; %initialize error flag
 %%%%%%%%%%%%%%%%%%%%% READ N DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %open N index layer file
-[fid,message]=fopen(strcat(layer,'.nnn'));
+[fid,message]=fopen(strcat(layer,'.n'));
 %checks for unopened files (case sensitive on unix causes problems)
 if fid==-1 %check for error on open
     disp('Invalid material name (check case) in (n_material)!!!!')
@@ -173,7 +173,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%% READ K DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[fid,message]=fopen(strcat(layer,'.kkk'));
+[fid,message]=fopen(strcat(layer,'.k'));
 %checks for unopened files (case sensitive on unix causes problems)
 if fid==-1 %check for error on open
     disp('Invalid material name (check case) in (n_material)!!!!')

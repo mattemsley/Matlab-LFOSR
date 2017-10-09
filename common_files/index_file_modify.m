@@ -46,7 +46,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %user selection of file
-[fname,pname]=uiputfile('*.nnn; *.kkk','Structure File Name'); 
+[fname,pname]=uiputfile('*.n; *.k','Structure File Name'); 
 %check for no file selected (i.e. canceled operation)
 if isempty(fname)|fname==0 %test for error in filename
    testf=1; %filename error
